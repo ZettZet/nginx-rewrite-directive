@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  auth:
+    image: jboss/keycloak
+    env_file:
+      - keycloak.env
+
+  webserver:
+    build: ./nginx/
+    env_file:
+      - webserver.env
+    ports:
+      - "90:80"
+    volumes:
+      - "~/container_volumes/nginx/:/var/log/nginx"
